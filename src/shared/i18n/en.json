@@ -1,0 +1,80 @@
+{
+  "siteName": "MultiTools Hub",
+  "nav": {
+    "home": "Home",
+    "tools": "Tools",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "contact": "Contact"
+  },
+  "common": {
+    "language": "Language",
+    "relatedTools": "Related Tools",
+    "howItWorks": "How It Works",
+    "faq": "Frequently Asked Questions",
+    "adLabel": "Advertisement",
+    "demoMode": "Demo Mode",
+    "copy": "Copy",
+    "download": "Download",
+    "generate": "Generate",
+    "clear": "Clear",
+    "openTool": "Open Tool",
+    "free": "Free"
+  },
+  "home": {
+    "title": "Free Online Tools: Image Compressor, QR Code Generator & AI Text Tools",
+    "description": "Use fast, free online tools directly in your browser. Compress images, generate QR codes, and improve text with full privacy and no uploads.",
+    "heroTitle": "Powerful browser tools for creators and developers",
+    "heroText": "Compress images, create custom QR codes, and improve text instantly — all locally in your browser with zero data upload.",
+    "cta": "Start Using Tools"
+  },
+  "tools": {
+    "title": "All Free Tools",
+    "description": "Explore fast, lightweight browser tools for images, QR codes, and text processing — all privacy-friendly and easy to use.",
+    "intro": "Choose a tool and get started instantly. Everything runs locally in your browser.",
+    "imageCompressor": "Image Compressor & Converter",
+    "qrGenerator": "QR Code Generator",
+    "aiText": "AI Text Tools",
+    "openTool": "Open Tool",
+    "imageDescription": "Compress and convert images (JPG, PNG, WebP) directly in your browser without uploading.",
+    "qrDescription": "Generate custom QR codes for URLs, text, business cards, and more.",
+    "aiDescription": "Improve, shorten, and refine text using a local demo tool."
+  },
+  "imageTool": {
+    "title": "Free Image Compressor & Converter Online",
+    "description": "Compress images and convert formats (JPG, PNG, WebP) directly in your browser with no uploads required.",
+    "privacy": "Your images are processed locally in your browser and are never uploaded.",
+    "upload": "Upload Image",
+    "quality": "Compression Quality",
+    "format": "Output Format",
+    "originalSize": "Original Size",
+    "newSize": "Compressed Size",
+    "processing": "Processing...",
+    "saved": "Saved Size"
+  },
+  "qrTool": {
+    "title": "Free QR Code Generator",
+    "description": "Create and download custom QR codes for links, text, and more in seconds.",
+    "input": "Enter text or URL",
+    "foreground": "QR Color",
+    "generating": "Generating...",
+    "background": "Background Color"
+  },
+  "aiTool": {
+    "title": "AI Text Tools (Demo)",
+    "description": "Improve, shorten, or expand text instantly using a local demo tool. No external APIs used.",
+    "input": "Enter your text",
+    "output": "Output",
+    "improve": "Improve Text",
+    "shorten": "Shorten Text",
+    "copied": "Copied",
+    "chars": "chars",
+    "expand": "Expand Text"
+  },
+  "pages": {
+    "privacyTitle": "Privacy Policy",
+    "termsTitle": "Terms of Service",
+    "contactTitle": "Contact Us",
+    "contactText": "For business inquiries, advertising partnerships, or feedback, contact us at: contact@example.com"
+  }
+}
