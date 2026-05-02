@@ -10,12 +10,13 @@ import {
   getLocalStorageValue,
   setLocalStorageValue,
 } from '../../shared/utils/storage'
+import { SITE_ORIGIN, siteUrl } from '../../shared/constants/site'
 
 function QRCodeGeneratorPage() {
   const { t } = useTranslation()
   const { lang = 'en' } = useParams()
 
-  const [input, setInput] = useState('https://example.com')
+  const [input, setInput] = useState(`${SITE_ORIGIN}/`)
   const [foreground, setForeground] = useState(
     getLocalStorageValue<string>(STORAGE_KEYS.qrColor, '#0f172a')
   )
@@ -64,7 +65,7 @@ function QRCodeGeneratorPage() {
       <SEO
         title={`${t('qrTool.title')} | ${t('siteName')}`}
         description={t('qrTool.description')}
-        canonical={`https://example.com/${lang}/tools/qr-code-generator`}
+        canonical={siteUrl(`/${lang}/tools/qr-code-generator`)}
         lang={lang === 'ar' ? 'ar' : 'en'}
       />
 
@@ -89,7 +90,7 @@ function QRCodeGeneratorPage() {
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              placeholder="https://example.com"
+              placeholder={`${SITE_ORIGIN}/`}
               className="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10"
             />
           </label>
@@ -176,7 +177,19 @@ function QRCodeGeneratorPage() {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Link
+          to={`/${lang}/`}
+          className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          {t('nav.home')}
+        </Link>
+        <Link
+          to={`/${lang}/tools`}
+          className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          {t('nav.tools')}
+        </Link>
         <Link
           to={`/${lang}/tools/image-compressor`}
           className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { SEO } from '../shared/components/SEO'
+import { siteUrl } from '../shared/constants/site'
 
 function ContactPage() {
   const { t } = useTranslation()
@@ -18,7 +19,7 @@ function ContactPage() {
       <SEO
         title={`${t('pages.contactTitle')} | ${t('siteName')}`}
         description={t('pages.contactText')}
-        canonical={`https://example.com/${lang}/contact`}
+        canonical={siteUrl(`/${lang}/contact`)}
         lang={isAr ? 'ar' : 'en'}
       />
 

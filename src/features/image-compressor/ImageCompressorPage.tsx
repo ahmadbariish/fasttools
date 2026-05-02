@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { SEO } from '../../shared/components/SEO'
 import { AdSlot } from '../../shared/components/ads/AdSlot'
@@ -10,12 +10,28 @@ import {
   getLocalStorageValue,
   setLocalStorageValue,
 } from '../../shared/utils/storage'
+import { siteUrl } from '../../shared/constants/site'
+import { IMAGE_COMPRESSOR_LANDING_COPY } from './imageCompressorLandingSeo'
 
 type OutputFormat = 'image/jpeg' | 'image/png' | 'image/webp'
 
 function ImageCompressorPage() {
   const { t } = useTranslation()
   const { lang = 'en' } = useParams()
+  const { pathname } = useLocation()
+  const locale = lang === 'ar' ? 'ar' : 'en'
+
+  const slug = useMemo(() => {
+    const parts = pathname.replace(/\/$/, '').split('/').filter(Boolean)
+    return parts[2] ?? 'image-compressor'
+  }, [pathname])
+
+  const landing =
+    slug !== 'image-compressor' && slug in IMAGE_COMPRESSOR_LANDING_COPY
+      ? IMAGE_COMPRESSOR_LANDING_COPY[
+          slug as keyof typeof IMAGE_COMPRESSOR_LANDING_COPY
+        ][locale]
+      : null
 
   const [originalFile, setOriginalFile] = useState<File | null>(null)
   const [preview, setPreview] = useState('')
@@ -112,19 +128,28 @@ function ImageCompressorPage() {
   return (
     <>
       <SEO
-        title={`${t('imageTool.title')} | ${t('siteName')}`}
-        description={t('imageTool.description')}
-        canonical={`https://example.com/${lang}/tools/image-compressor`}
+        title={
+          landing
+            ? `${landing.seoTitle} | ${t('siteName')}`
+            : `${t('imageTool.title')} | ${t('siteName')}`
+        }
+        description={landing ? landing.seoDescription : t('imageTool.description')}
+        canonical={siteUrl(`/${lang}/tools/${slug}`)}
         lang={lang === 'ar' ? 'ar' : 'en'}
       />
 
       <header className="mb-5">
         <h1 className="mb-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-          {t('imageTool.title')}
+          {landing ? landing.h1 : t('imageTool.title')}
         </h1>
         <p className="max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
-          {t('imageTool.privacy')}
+          {landing ? landing.intro : t('imageTool.privacy')}
         </p>
+        {landing ? (
+          <p className="mt-3 max-w-3xl text-xs leading-6 text-slate-500 sm:text-sm">
+            {t('imageTool.privacy')}
+          </p>
+        ) : null}
       </header>
 
       <AdSlot slotName={AD_SLOTS.toolHeader} format="horizontal" />
@@ -244,14 +269,37 @@ function ImageCompressorPage() {
         <h2 className="mb-3 text-xl font-bold text-slate-950">
           {t('common.faq')}
         </h2>
-        <p className="leading-7 text-slate-600">
-          {lang === 'ar'
-            ? 'لا يتم رفع الصور إلى أي سيرفر. تتم المعالجة داخل ذاكرة المتصفح فقط.'
-            : 'Images are never uploaded to a server. Processing happens only in your browser memory.'}
-        </p>
+        {landing ? (
+          <dl className="space-y-5 text-slate-600">
+            {landing.faq.map((item) => (
+              <div key={item.q}>
+                <dt className="font-semibold text-slate-900">{item.q}</dt>
+                <dd className="mt-1.5 leading-7">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <p className="leading-7 text-slate-600">
+            {lang === 'ar'
+              ? 'لا يتم رفع الصور إلى أي سيرفر. تتم المعالجة داخل ذاكرة المتصفح فقط.'
+              : 'Images are never uploaded to a server. Processing happens only in your browser memory.'}
+          </p>
+        )}
       </section>
 
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Link
+          to={`/${lang}/`}
+          className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          {t('nav.home')}
+        </Link>
+        <Link
+          to={`/${lang}/tools`}
+          className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          {t('nav.tools')}
+        </Link>
         <Link
           to={`/${lang}/tools/qr-code-generator`}
           className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"

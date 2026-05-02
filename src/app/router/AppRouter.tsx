@@ -34,6 +34,10 @@ export function AppRouter() {
             <Route index element={<HomePage />} />
             <Route path="tools" element={<ToolsPage />} />
             <Route path="tools/image-compressor" element={<ImageCompressorPage />} />
+            <Route path="tools/compress-image-online" element={<ImageCompressorPage />} />
+            <Route path="tools/reduce-image-size" element={<ImageCompressorPage />} />
+            <Route path="tools/jpg-to-webp" element={<ImageCompressorPage />} />
+            <Route path="tools/png-to-jpg" element={<ImageCompressorPage />} />
             <Route path="tools/qr-code-generator" element={<QRCodeGeneratorPage />} />
             <Route path="tools/ai-text-tools" element={<AITextToolsPage />} />
             <Route path="privacy-policy" element={<PrivacyPolicyPage />} />

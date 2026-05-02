@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { SEO } from '../shared/components/SEO'
+import { siteUrl } from '../shared/constants/site'
 
 function TermsPage() {
   const { t } = useTranslation()
@@ -16,7 +17,7 @@ function TermsPage() {
             ? 'شروط استخدام منصة الأدوات المجانية وكيفية استخدام الخدمات بشكل قانوني.'
             : 'Terms of service for using our free online tools and platform.'
         }
-        canonical={`https://example.com/${lang}/terms`}
+        canonical={siteUrl(`/${lang}/terms`)}
         lang={isAr ? 'ar' : 'en'}
       />
 

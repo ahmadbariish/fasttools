@@ -7,6 +7,7 @@ import {
   type SupportedLanguage,
 } from '../../constants/languages'
 import { STORAGE_KEYS, setLocalStorageValue } from '../../utils/storage'
+import { RoutePrefetch } from '../RoutePrefetch'
 
 export function MainLayout() {
   const { t, i18n } = useTranslation()
@@ -41,11 +42,13 @@ export function MainLayout() {
   }, [currentLang, i18n, isRtl])
 
   useEffect(() => {
-    setIsMenuOpen(false)
+    const id = window.requestAnimationFrame(() => setIsMenuOpen(false))
+    return () => window.cancelAnimationFrame(id)
   }, [location.pathname])
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
+      <RoutePrefetch lang={currentLang === 'ar' ? 'ar' : 'en'} />
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
           <Link

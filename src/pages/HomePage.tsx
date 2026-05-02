@@ -4,6 +4,7 @@ import { SEO } from '../shared/components/SEO'
 import { AdSlot } from '../shared/components/ads/AdSlot'
 import { AD_SLOTS } from '../shared/constants/ads'
 import { ToolCard } from '../shared/components/ToolCard'
+import { siteUrl } from '../shared/constants/site'
 
 function HomePage() {
   const { t } = useTranslation()
@@ -14,19 +15,42 @@ function HomePage() {
       <SEO
         title={t('home.title')}
         description={t('home.description')}
-        canonical={`https://example.com/${lang}`}
+        canonical={siteUrl(`/${lang}/`)}
+        lang={lang === 'ar' ? 'ar' : 'en'}
       />
       <section className="rounded-2xl bg-white p-5 text-center shadow-sm sm:p-8">
         <h1 className="mx-auto mb-3 max-w-2xl text-2xl font-bold leading-tight sm:text-3xl">
           {t('home.heroTitle')}
         </h1>
         <p className="mx-auto mb-6 max-w-2xl text-slate-600">{t('home.heroText')}</p>
-        <Link
-          to={`/${lang}/tools`}
-          className="inline-flex min-h-11 items-center justify-center rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white sm:text-base"
-        >
-          {t('home.cta')}
-        </Link>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <Link
+            to={`/${lang}/tools`}
+            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white sm:text-base"
+          >
+            {t('home.cta')}
+          </Link>
+          <nav
+            aria-label={lang === 'ar' ? 'روابط سريعة للأدوات' : 'Quick links to tools'}
+            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-semibold text-slate-700"
+          >
+            <Link to={`/${lang}/tools/image-compressor`} className="underline-offset-4 hover:underline">
+              {t('tools.imageCompressor')}
+            </Link>
+            <span className="hidden text-slate-300 sm:inline" aria-hidden>
+              ·
+            </span>
+            <Link to={`/${lang}/tools/qr-code-generator`} className="underline-offset-4 hover:underline">
+              {t('tools.qrGenerator')}
+            </Link>
+            <span className="hidden text-slate-300 sm:inline" aria-hidden>
+              ·
+            </span>
+            <Link to={`/${lang}/tools/ai-text-tools`} className="underline-offset-4 hover:underline">
+              {t('tools.aiText')}
+            </Link>
+          </nav>
+        </div>
       </section>
       <AdSlot slotName={AD_SLOTS.homeHero} format="horizontal" />
       <section className="grid grid-cols-1 gap-4 md:grid-cols-3">

@@ -19,10 +19,7 @@ export function AdSlot({ slotName, format }: AdSlotProps) {
     if (!ADS_ENABLED) return
 
     try {
-      // @ts-ignore
       if (window.adsbygoogle && adRef.current) {
-        // Prevent duplicate pushes
-        // @ts-ignore
         window.adsbygoogle.push({})
       }
     } catch (e) {

@@ -9,6 +9,7 @@ import {
   getLocalStorageValue,
   setLocalStorageValue,
 } from '../../shared/utils/storage'
+import { siteUrl } from '../../shared/constants/site'
 
 type Mode = 'improve' | 'shorten' | 'expand'
 
@@ -67,7 +68,7 @@ function AITextToolsPage() {
       <SEO
         title={`${t('aiTool.title')} | ${t('siteName')}`}
         description={t('aiTool.description')}
-        canonical={`https://example.com/${lang}/tools/ai-text-tools`}
+        canonical={siteUrl(`/${lang}/tools/ai-text-tools`)}
         lang={lang === 'ar' ? 'ar' : 'en'}
       />
 
@@ -183,7 +184,19 @@ function AITextToolsPage() {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Link
+          to={`/${lang}/`}
+          className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          {t('nav.home')}
+        </Link>
+        <Link
+          to={`/${lang}/tools`}
+          className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          {t('nav.tools')}
+        </Link>
         <Link
           to={`/${lang}/tools/image-compressor`}
           className="rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"

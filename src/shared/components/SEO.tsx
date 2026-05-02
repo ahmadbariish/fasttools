@@ -1,13 +1,18 @@
 import { useEffect } from 'react'
+import { DEFAULT_OG_IMAGE } from '../constants/site'
 
 type SEOProps = {
   title: string
   description: string
   canonical: string
+  /** Absolute image URL for og:image / twitter:image (defaults to site placeholder). */
+  image?: string
   lang?: 'ar' | 'en'
 }
 
-export function SEO({ title, description, canonical, lang = 'en' }: SEOProps) {
+export function SEO({ title, description, canonical, image, lang = 'en' }: SEOProps) {
+  const shareImage = image ?? DEFAULT_OG_IMAGE
+
   useEffect(() => {
     // 🔹 Title
     document.title = title
@@ -36,11 +41,14 @@ export function SEO({ title, description, canonical, lang = 'en' }: SEOProps) {
     setMeta('property', 'og:description', description)
     setMeta('property', 'og:type', 'website')
     setMeta('property', 'og:url', canonical)
+    setMeta('property', 'og:image', shareImage)
 
     // 🔹 Twitter Card
     setMeta('name', 'twitter:card', 'summary_large_image')
+    setMeta('name', 'twitter:url', canonical)
     setMeta('name', 'twitter:title', title)
     setMeta('name', 'twitter:description', description)
+    setMeta('name', 'twitter:image', shareImage)
 
     // 🔹 Canonical
     let canonicalTag = document.head.querySelector(
@@ -78,7 +86,7 @@ export function SEO({ title, description, canonical, lang = 'en' }: SEOProps) {
       setAltLang('en', canonical)
       setAltLang('ar', canonical.replace('/en', '/ar'))
     }
-  }, [title, description, canonical, lang])
+  }, [title, description, canonical, lang, shareImage])
 
   return null
 }

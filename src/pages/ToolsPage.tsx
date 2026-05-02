@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { SEO } from '../shared/components/SEO'
 import { AD_SLOTS } from '../shared/constants/ads'
 import { AdSlot } from '../shared/components/ads/AdSlot'
 import { ToolCard } from '../shared/components/ToolCard'
+import { siteUrl } from '../shared/constants/site'
 
 function ToolsPage() {
   const { t } = useTranslation()
@@ -15,9 +16,19 @@ function ToolsPage() {
       <SEO
         title={`${t('tools.title')} | ${t('siteName')}`}
         description={t('tools.description')}
-        canonical={`https://example.com/${lang}/tools`}
+        canonical={siteUrl(`/${lang}/tools`)}
         lang={isAr ? 'ar' : 'en'}
       />
+
+      <p className="mb-4 text-sm">
+        <Link to={`/${lang}/`} className="font-semibold text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
+          {t('nav.home')}
+        </Link>
+        <span className="mx-2 text-slate-300" aria-hidden>
+          /
+        </span>
+        <span className="text-slate-600">{t('nav.tools')}</span>
+      </p>
 
       <header className="mb-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
         <span className="mb-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">

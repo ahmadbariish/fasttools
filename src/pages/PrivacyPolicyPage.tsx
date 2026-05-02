@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { SEO } from '../shared/components/SEO'
+import { siteUrl } from '../shared/constants/site'
 
 function PrivacyPolicyPage() {
   const { t } = useTranslation()
@@ -16,7 +17,7 @@ function PrivacyPolicyPage() {
             ? 'تعرف على كيفية حماية خصوصيتك عند استخدام أدواتنا المجانية داخل المتصفح.'
             : 'Learn how we protect your privacy when using our free browser-based tools.'
         }
-        canonical={`https://example.com/${lang}/privacy-policy`}
+        canonical={siteUrl(`/${lang}/privacy-policy`)}
         lang={isAr ? 'ar' : 'en'}
       />
 
