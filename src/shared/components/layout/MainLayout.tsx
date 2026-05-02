@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useMemo, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import {
   DEFAULT_LANGUAGE,
   RTL_LANGUAGES,
@@ -151,6 +152,7 @@ export function MainLayout() {
           </div>
         </div>
       </footer>
+      <Analytics />
     </div>
   )
 }
