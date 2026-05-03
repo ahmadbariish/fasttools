@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://fasttools.ahmadbarish.xyz/sitemap.xml
